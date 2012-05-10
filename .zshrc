@@ -39,7 +39,7 @@ zstyle ':completion:*' use-cache true
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-PROMPT='%! %n:Sayashi9 %(!.#.>) '
+PROMPT='%! %n:$HOST %(!.#.>) '
 RPROMPT='[%~]'
 
 if [ "$TERM" = "screen" ]; then
@@ -92,7 +92,7 @@ function cdup() {
 	zle accept-line
 }
 zle -N cdup
-bindkey '\^' cdup
+# bindkey '\^' cdup
 
 if [ -f ~/.alias ]; then
 	source ~/.alias
