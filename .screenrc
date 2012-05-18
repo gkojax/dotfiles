@@ -1,0 +1,11 @@
+defencoding UTF8
+escape ^t^t
+hardstatus ignore "%w | %h"
+hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+
+defscrollback 10000
+startup_message off
+autodetach on
+
+# shell -${SHELL}
+

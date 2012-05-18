@@ -1,0 +1,20 @@
+
+alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
+alias -g L='| less'
+alias -g G='| grep -n'
+alias .='dirs -v'
+alias ..='cd ..'
+alias ls='ls -CFqv'
+alias l='ls -l'
+alias lt='ls -ltr'
+alias la='ls -a'
+alias rm='rm -i'
+alias h='history'
+alias jk='jobs; kill %%'
+alias op='open .'
+# alias top='top -u -s3'
+alias grep='grep -n'
+
+alias sipsi='sips -i *.jpg'
+alias sipsz='sips --resampleHeight 180'
+

@@ -39,7 +39,7 @@ zstyle ':completion:*' use-cache true
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-PROMPT='%! %n:$HOST %(!.#.>) '
+PROMPT='%! %n:%m %(!.#.>) '
 RPROMPT='[%~]'
 
 if [ "$TERM" = "screen" ]; then
@@ -96,4 +96,5 @@ zle -N cdup
 
 if [ -f ~/.alias ]; then
 	source ~/.alias
+	source ~/.alias2
 fi
