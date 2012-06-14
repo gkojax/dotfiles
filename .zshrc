@@ -96,5 +96,7 @@ zle -N cdup
 
 if [ -f ~/.alias ]; then
 	source ~/.alias
+fi
+if [ -f ~/.alias2 ]; then
 	source ~/.alias2
 fi
