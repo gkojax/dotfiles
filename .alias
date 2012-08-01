@@ -15,6 +15,3 @@ alias op='open .'
 # alias top='top -u -s3'
 alias grep='grep -n'
 
-alias sipsi='sips -i *.jpg'
-alias sipsz='sips --resampleHeight 180'
-
