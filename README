@@ -1,7 +1,3 @@
-READMEファイルの中身がここに反映する
-
----
-
 cd dotfiles
 ln -s dotfiles/.zshrc ~/.
 ln -s dotfiles/.screenrc ~/.
