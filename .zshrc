@@ -1,14 +1,6 @@
-if [ -x /usr/libexec/path_helper ]; then
-        eval `/usr/libexec/path_helper -s`
-fi
-
 bindkey -e
-export CVSROOT="/Volumes/LikeWater/cvs"
 export EDITOR="/usr/bin/vim"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export JAVA_HOME="/Library/Java/Home"
-export SCALA_HOME="/opt/local/share/scala-2.9"
-export USE_FSC=yes
+# export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 setopt always_last_prompt
 setopt auto_cd
@@ -94,9 +86,20 @@ function cdup() {
 zle -N cdup
 # bindkey '\^' cdup
 
+alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
+alias -g L='| less'
+alias -g G='| grep -n'
+alias .='dirs -v'
+alias ..='cd ..'
+alias ls='ls -CFqv'
+alias l='ls -l'
+alias lt='ls -ltr'
+alias la='ls -a'
+alias rm='rm -i'
+alias h='history'
+alias jk='jobs; kill %%'
+alias grep='grep -n'
+
 if [ -f ~/.alias ]; then
 	source ~/.alias
-fi
-if [ -f ~/.alias2 ]; then
-	source ~/.alias2
 fi
