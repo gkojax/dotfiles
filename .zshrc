@@ -134,8 +134,8 @@ bindkey '\^' cdup
 # 以下エイリアス
 alias -g L='| less'
 alias -g G='| grep -n'
-alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
-alias .='dirs -v'
+# alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
+# alias .='dirs -v'
 alias ..='cd ..'
 alias ls='ls -CFqv'
 alias l='ls -l'
@@ -149,3 +149,12 @@ alias grep='grep -n'
 if [ -f ~/.alias ]; then
 	source ~/.alias
 fi
+
+fpath=(~/dotfiles/zsh-completions/src $fpath)
+source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval $(dircolors ~/dotfiles/dircolors-solarized/dircolors.ansi-universal)
+
+if [ -n "$LS_COLORS" ]; then
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+fi
+

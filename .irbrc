@@ -1,7 +1,7 @@
 # require 'irb/completion'
 require 'pp'
 require 'rubygems'
-require 'active_support'
+require 'active_support/all'
 require 'readline'
 
 IRB.conf[:AUTO_INDENT]=true
