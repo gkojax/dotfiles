@@ -151,7 +151,7 @@ if [ -f ~/.alias ]; then
 fi
 
 fpath=(~/dotfiles/zsh-completions/src $fpath)
-source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval $(dircolors ~/dotfiles/dircolors-solarized/dircolors.ansi-universal)
 
 if [ -n "$LS_COLORS" ]; then
