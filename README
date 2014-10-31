@@ -1,7 +1,7 @@
-git clone https://github.com/gkojax/dotfiles
-cd dotfiles
-git submodule update --init dircolors-solarized zsh-completions zsh-syntax-highlighting
+git clone https://github.com/gkojax/dotfiles;
+cd dotfiles;
+git submodule update --init dircolors-solarized zsh-completions zsh-syntax-highlighting;
  
-ln -s ~/dotfiles/.zshrc ~/.
-ln -s ~/dotfiles/.screenrc ~/.
+ln -s ~/dotfiles/.zshrc ~/.;
+ln -s ~/dotfiles/.screenrc ~/.;
 
