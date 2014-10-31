@@ -4,6 +4,10 @@ bindkey -e
 # エディタ
 export EDITOR="/usr/bin/vim"
 
+setopt IGNORE_EOF
+setopt NO_FLOW_CONTROL
+setopt NO_BEEP
+
 # カーソル位置は保持したままファイル名一覧を順次その場で表示する
 setopt always_last_prompt
 
@@ -56,6 +60,18 @@ function history-all { history -E 1 }
 # 補完機能
 autoload -U compinit
 compinit
+
+autoload -Uz history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+bindkey "^o" history-beginning-search-backward-end
+
+autoload -Uz add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ":chpwd:*" recent-dirs-max 200
+zstyle ":chpwd:*" recent-dirs-default true
+
+autoload -Uz zmv
 
 zstyle ':completion:*:default' menu select=1
 
@@ -138,7 +154,7 @@ alias -g G='| grep -n'
 # alias .='dirs -v'
 alias ..='cd ..'
 alias ls='ls -CFqv'
-alias l='ls -l'
+alias l='ls -lh'
 alias lt='ls -ltr'
 alias la='ls -a'
 alias rm='rm -i'
