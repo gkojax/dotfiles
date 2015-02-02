@@ -65,11 +65,11 @@ autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 bindkey "^o" history-beginning-search-backward-end
 
-autoload -Uz add-zsh-hook
-autoload -Uz chpwd_recent_dirs cdr
-add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ":chpwd:*" recent-dirs-max 200
-zstyle ":chpwd:*" recent-dirs-default true
+# autoload -Uz add-zsh-hook
+# autoload -Uz chpwd_recent_dirs cdr
+# add-zsh-hook chpwd chpwd_recent_dirs
+# zstyle ":chpwd:*" recent-dirs-max 200
+# zstyle ":chpwd:*" recent-dirs-default true
 
 autoload -Uz zmv
 
@@ -134,7 +134,7 @@ fi
 
 function chpwd() {
 	echo -n "\e]2;$(pwd)\a"
-	ls -CFqv
+	ls -CFqv | tail
 }
 
 # '^'キーを押すだけで一つ上のディレクトリに移動する
