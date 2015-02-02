@@ -134,7 +134,7 @@ fi
 
 function chpwd() {
 	echo -n "\e]2;$(pwd)\a"
-	ls -CFqv
+	ls -CFqv | tail
 }
 
 # '^'キーを押すだけで一つ上のディレクトリに移動する
