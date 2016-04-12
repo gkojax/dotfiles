@@ -137,21 +137,9 @@ function chpwd() {
 	ls -CFqv | tail
 }
 
-# '^'キーを押すだけで一つ上のディレクトリに移動する
-function cdup() {
-	echo
-	cd ..
-	zle push-line-or-edit
-	zle accept-line
-}
-zle -N cdup
-bindkey '\^' cdup
-
 # 以下エイリアス
 alias -g L='| less'
 alias -g G='| grep -n'
-# alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
-# alias .='dirs -v'
 alias ..='cd ..'
 alias ls='ls -CFqv'
 alias l='ls -lh'
@@ -161,6 +149,13 @@ alias rm='rm -i'
 alias h='history'
 alias jk='jobs; kill %%'
 alias grep='grep -n'
+
+alias gs='git status'
+alias gl='git log --oneline'
+alias gln='git log --name-only'
+alias gd='git diff'
+alias gdn='git diff --name-only'
+alias gcm='git commit -m'
 
 if [ -f ~/.alias ]; then
 	source ~/.alias
