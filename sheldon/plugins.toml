@@ -53,3 +53,6 @@ apply = ["defer"]
 [plugins.zoxide]
 github = "ajeetdsouza/zoxide"
 apply = ["defer"]
+
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
