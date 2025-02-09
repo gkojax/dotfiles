@@ -1,3 +1,6 @@
+export SHELDON_CONFIG_DIR=~/dotfiles/sheldon
+eval "$(sheldon source)"
+
 # 初回シェル時のみ tmux実行
 if [ $SHLVL = 1 ]; then
   tmux
@@ -62,10 +65,6 @@ HISTSIZE=10000
 SAVEHIST=100000
 function history-all { history -E 1 }
 
-# 補完機能
-# autoload -U compinit
-# compinit
-
 # 1分毎に時刻表示
 PERIOD=60
 function periodic_function1() {
@@ -77,10 +76,6 @@ periodic() {
 
 # 複数ファイルのリネーム　-nでdryrun
 autoload -Uz zmv
-
-# <Tab>でパス名の補完候補を表示したあと、
-# 続けて<Tab>を押すと候補からパス名を選択することができるようになる
-zstyle ':completion:*:default' menu select=1
 
 # cd と同時に ls
 function chpwd() {
@@ -98,8 +93,6 @@ ZSH_COMMAND_TIME_MIN_SECONDS=3
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 ZSH_COMMAND_TIME_COLOR="cyan"
 ZSH_COMMAND_TIME_EXCLUDE=(vim mcedit)
-
-# eval "$(sheldon source)"
 
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
