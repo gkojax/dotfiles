@@ -63,8 +63,8 @@ SAVEHIST=100000
 function history-all { history -E 1 }
 
 # 補完機能
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
 
 # 1分毎に時刻表示
 PERIOD=60
@@ -82,48 +82,22 @@ autoload -Uz zmv
 # 続けて<Tab>を押すと候補からパス名を選択することができるようになる
 zstyle ':completion:*:default' menu select=1
 
-# 以下エイリアス
-alias -g L='| less'
-alias -g G='| \grep -n'
-alias ..='cd ..'
-alias ls='gls --color=auto'
-alias l='ls -lh'
-alias lt='ls -ltr'
-alias la='ls -a'
-alias rm='rm -i'
-alias h='history'
-alias jk='jobs; kill %%'
-alias grep='grep -n'
+# cd と同時に ls
+function chpwd() {
+    gls --color=auto
+}
 
-alias gs='git status'
-alias gl='git log --oneline'
-alias gln='git log --name-only'
-alias gd='git diff'
-alias gdn='git diff --name-only'
-alias gcm='git commit -m'
-
-if [ -f ~/.alias ]; then
-	source ~/.alias
-fi
-
-# function chpwd() {
-# 	echo -n "\e]2;$(pwd)\a"
-# 	ls -CFqv | tail
-# }
-
+# プロンプト
 PROMPT='%! %n:%m %(!.#.>) '
-# alias python="python3"
-# source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
-# PROMPT='%! %B %m %~%b$(git_super_status) %(!.#.>) '
 
 # プロンプト右端
 RPROMPT='[%~]'
 
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
+# plugins.zsh-command-timeの設定
+ZSH_COMMAND_TIME_MIN_SECONDS=3
+ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
+ZSH_COMMAND_TIME_COLOR="cyan"
+ZSH_COMMAND_TIME_EXCLUDE=(vim mcedit)
 
 # eval "$(sheldon source)"
 
@@ -165,3 +139,27 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^X' peco-cdr
+
+# エイリアス
+alias -g L='| less'
+alias -g G='| \grep -n'
+alias ..='cd ..'
+alias ls='gls --color=auto'
+alias l='ls -lh'
+alias lt='ls -ltr'
+alias la='ls -a'
+alias rm='rm -i'
+alias h='history'
+alias jk='jobs; kill %%'
+alias grep='grep -n'
+
+alias gs='git status'
+alias gl='git log --oneline'
+alias gln='git log --name-only'
+alias gd='git diff'
+alias gdn='git diff --name-only'
+alias gcm='git commit -m'
+
+if [ -f ~/.alias ]; then
+	source ~/.alias
+fi
