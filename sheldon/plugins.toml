@@ -49,3 +49,7 @@ apply = ["defer"]
 [plugins.zsh-autopair]
 github = "hlissner/zsh-autopair"
 apply = ["defer"]
+
+[plugins.zoxide]
+github = "ajeetdsouza/zoxide"
+apply = ["defer"]

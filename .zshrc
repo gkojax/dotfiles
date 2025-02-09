@@ -1,10 +1,10 @@
-export SHELDON_CONFIG_DIR=~/dotfiles/sheldon
-eval "$(sheldon source)"
-
 # 初回シェル時のみ tmux実行
 if [ $SHLVL = 1 ]; then
   tmux
 fi
+
+export SHELDON_CONFIG_DIR=~/dotfiles/sheldon
+eval "$(sheldon source)"
 
 # Emacs風ショートカットキー設定
 bindkey -e
@@ -64,15 +64,6 @@ HISTSIZE=10000
 # 保存される履歴
 SAVEHIST=100000
 function history-all { history -E 1 }
-
-# 1分毎に時刻表示
-PERIOD=60
-function periodic_function1() {
-  echo "$(date)\n"
-}
-periodic() {
-  periodic_function1
-}
 
 # 複数ファイルのリネーム　-nでdryrun
 autoload -Uz zmv
@@ -156,3 +147,6 @@ alias gcm='git commit -m'
 if [ -f ~/.alias ]; then
 	source ~/.alias
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(zoxide init zsh)"
