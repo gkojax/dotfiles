@@ -1,3 +1,8 @@
+# 初回シェル時のみ tmux実行
+if [ $SHLVL = 1 ]; then
+  tmux
+fi
+
 # Emacs風ショートカットキー設定
 bindkey -e
 
@@ -77,12 +82,6 @@ zstyle ':completion:*:default' menu select=1
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# プロンプト
-PROMPT='%! %n:%m %(!.#.>) '
-
-# プロンプト右端
-RPROMPT='[%~]'
-
 function chpwd() {
 	echo -n "\e]2;$(pwd)\a"
 	ls -CFqv | tail
@@ -119,7 +118,29 @@ source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(gh completion -s zsh)"
 
-# 初回シェル時のみ tmux実行
-if [ $SHLVL = 1 ]; then
-  tmux
-fi
+# プロンプト
+git_prompt() {
+  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = true ]; then
+    PROMPT='%! %n:%m %(!.#.>) '
+  else
+    PROMPT='%! %n:%m %(!.#.>) '
+  fi
+}
+
+precmd() {
+  # git_prompt
+}
+
+PROMPT='%! %n:%m %(!.#.>) '
+# alias python="python3"
+# source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
+# PROMPT='%! %B %m %~%b$(git_super_status) %(!.#.>) '
+
+# プロンプト右端
+RPROMPT='[%~]'
+
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
