@@ -97,6 +97,7 @@ alias rm='rm -i'
 alias h='history'
 alias jk='jobs; kill %%'
 alias grep='grep -n'
+alias op='open .'
 
 alias gs='git status'
 alias gl='git log --oneline'
