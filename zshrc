@@ -105,21 +105,19 @@ alias gd='git diff'
 alias gdn='git diff --name-only'
 alias gcm='git commit -m'
 
-if [ -f ~/.alias ]; then
-	source ~/.alias
+if [ -f ~/.local.zsh ]; then
+	source ~/.local.zsh
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+  --select-1 --exit-0"
 
 export FZF_CTRL_R_OPTS="
 --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
---color header:italic
---header 'Press CTRL-Y to copy command into clipboard'"
+--color header:italic"
 
 eval "$(zoxide init zsh)"
 zle -N zi
