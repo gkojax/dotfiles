@@ -66,26 +66,21 @@ function history-all { history -E 1 }
 autoload -U compinit
 compinit
 
-autoload -Uz history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-bindkey "^o" history-beginning-search-backward-end
+# 1分毎に時刻表示
+PERIOD=60
+function periodic_function1() {
+  echo "$(date)\n"
+}
+periodic() {
+  periodic_function1
+}
 
-autoload -Uz add-zsh-hook
-autoload -Uz chpwd_recent_dirs cdr
-add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ":chpwd:*" recent-dirs-max 200
-zstyle ":chpwd:*" recent-dirs-default true
-
+# 複数ファイルのリネーム　-nでdryrun
 autoload -Uz zmv
 
+# <Tab>でパス名の補完候補を表示したあと、
+# 続けて<Tab>を押すと候補からパス名を選択することができるようになる
 zstyle ':completion:*:default' menu select=1
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-
-function chpwd() {
-	echo -n "\e]2;$(pwd)\a"
-	ls -CFqv | tail
-}
 
 # 以下エイリアス
 alias -g L='| less'
@@ -111,25 +106,10 @@ if [ -f ~/.alias ]; then
 	source ~/.alias
 fi
 
-fpath=(~/dotfiles/zsh-completions/src $fpath)
-source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# eval $(dircolors ~/dotfiles/dircolors-solarized/dircolors.ansi-universal)
-# zinit light zsh-users/zsh-autosuggestions
-
-eval "$(gh completion -s zsh)"
-
-# プロンプト
-git_prompt() {
-  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = true ]; then
-    PROMPT='%! %n:%m %(!.#.>) '
-  else
-    PROMPT='%! %n:%m %(!.#.>) '
-  fi
-}
-
-precmd() {
-  # git_prompt
-}
+# function chpwd() {
+# 	echo -n "\e]2;$(pwd)\a"
+# 	ls -CFqv | tail
+# }
 
 PROMPT='%! %n:%m %(!.#.>) '
 # alias python="python3"
@@ -144,3 +124,44 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-you-should-use/you-should-use.plugin.zsh
+
+# eval "$(sheldon source)"
+
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
+
+## コマンド履歴検索
+function peco-history-selection() {
+  BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+## コマンド履歴からディレクトリ検索・移動
+if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
+  autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+  add-zsh-hook chpwd chpwd_recent_dirs
+  zstyle ':completion:*' recent-dirs-insert both
+  zstyle ':chpwd:*' recent-dirs-default true
+  zstyle ':chpwd:*' recent-dirs-max 1000
+  zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
+fi
+function peco-cdr () {
+  local selected_dir="$(cdr -l | sed 's/^[0-9]* *//' | peco)"
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+}
+zle -N peco-cdr
+bindkey '^X' peco-cdr
