@@ -75,16 +75,6 @@ autoload -Uz zmv
 
 zstyle ':completion:*:default' menu select=1
 
-# 補完の時に大文字小文字を区別しない
-# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# 一部のコマンドライン定義は、展開時に時間のかかる処理を行う
-zstyle ':completion:*' use-cache true
-
-# 補完候補もLS_COLORSに合わせて色づけ。
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-#
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 # プロンプト
@@ -92,45 +82,6 @@ PROMPT='%! %n:%m %(!.#.>) '
 
 # プロンプト右端
 RPROMPT='[%~]'
-
-# screenの設定
-if [ "$TERM" = "screen" ]; then
-	chpwd () { echo -n "_`dirs`\\" }
-	preexec() {
-		# see [zsh-workers:13180]
-		# http://www.zsh.org/mla/workers/2000/msg03993.html
-		emulate -L zsh
-		local -a cmd; cmd=(${(z)2})
-		case $cmd[1] in
-			fg)
-				if (( $#cmd == 1 )); then
-					cmd=(builtin jobs -l %+)
-				else
-					cmd=(builtin jobs -l $cmd[2])
-				fi
-				;;
-			%*)
-				cmd=(builtin jobs -l $cmd[1])
-				;;
-			cd)
-				if (( $#cmd == 2)); then
-					cmd[1]=$cmd[2]
-				fi
-				;&
-			*)
-				echo -n "k$cmd[1]:t\\"
-				return
-				;;
-		esac
-
-		local -A jt; jt=(${(kv)jobtexts})
-
-		$cmd >>(read num rest
-			cmd=(${(z)${(e):-\$jt$num}})
-			echo -n "k$cmd[1]:t\\") 2>/dev/null
-	}
-	chpwd
-fi
 
 function chpwd() {
 	echo -n "\e]2;$(pwd)\a"
@@ -141,7 +92,7 @@ function chpwd() {
 alias -g L='| less'
 alias -g G='| \grep -n'
 alias ..='cd ..'
-alias ls='ls -CFqv'
+alias ls='gls --color=auto'
 alias l='ls -lh'
 alias lt='ls -ltr'
 alias la='ls -a'
@@ -164,10 +115,7 @@ fi
 fpath=(~/dotfiles/zsh-completions/src $fpath)
 source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval $(dircolors ~/dotfiles/dircolors-solarized/dircolors.ansi-universal)
-
-if [ -n "$LS_COLORS" ]; then
-    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-fi
+# zinit light zsh-users/zsh-autosuggestions
 
 eval "$(gh completion -s zsh)"
 
