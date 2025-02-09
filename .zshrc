@@ -84,7 +84,7 @@ zstyle ':completion:*' use-cache true
 # 補完候補もLS_COLORSに合わせて色づけ。
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# 
+#
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 # プロンプト
@@ -139,7 +139,7 @@ function chpwd() {
 
 # 以下エイリアス
 alias -g L='| less'
-alias -g G='| grep -n'
+alias -g G='| \grep -n'
 alias ..='cd ..'
 alias ls='ls -CFqv'
 alias l='ls -lh'
@@ -169,3 +169,9 @@ if [ -n "$LS_COLORS" ]; then
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
+eval "$(gh completion -s zsh)"
+
+# 初回シェル時のみ tmux実行
+if [ $SHLVL = 1 ]; then
+  tmux
+fi
