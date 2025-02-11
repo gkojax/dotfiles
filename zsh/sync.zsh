@@ -46,6 +46,13 @@ setopt pushd_ignore_dups
 # 複数のpromptでログインした時など、履歴を共有する
 setopt share_history
 
+# 履歴ファイル
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
+
+# メモリ内の履歴
+HISTSIZE=10000
+# 保存される履歴
+SAVEHIST=100000
+function history-all { history -E 1 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

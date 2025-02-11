@@ -1,10 +1,3 @@
-HISTFILE=$HOME/.zsh-history
-# メモリ内の履歴
-HISTSIZE=10000
-# 保存される履歴
-SAVEHIST=100000
-function history-all { history -E 1 }
-
 # 複数ファイルのリネーム　-nでdryrun
 autoload -Uz zmv
 
@@ -65,3 +58,6 @@ zshaddhistory() {
 
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
+
+eval "$(rbenv init -)"
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
