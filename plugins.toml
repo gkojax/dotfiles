@@ -11,14 +11,15 @@
 # See the documentation for more https://github.com/rossmacarthur/sheldon#readme
 
 shell = "zsh"
-
-[templates]
-defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+apply = ["defer"]
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
+apply = ["source"]
 
-[plugins]
+[templates]
+# defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.compinit]
 inline = 'autoload -Uz compinit && zsh-defer compinit'
@@ -56,3 +57,14 @@ apply = ["defer"]
 
 [plugins.zsh-abbr]
 github = "olets/zsh-abbr"
+apply = ["defer"]
+
+[plugins.dotfiles-sync]
+local = "~/dotfiles/zsh"
+use = ["{sync,private}.zsh"]
+apply = ["source"]
+
+[plugins.dotfiles-defers]
+local = "~/dotfiles/zsh"
+use = ["{!sync,!private,*}.zsh"]
+apply = ["defer"]
