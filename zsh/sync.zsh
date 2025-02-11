@@ -4,10 +4,6 @@ bindkey -e
 # エディタ
 export EDITOR="/usr/bin/vim"
 
-setopt IGNORE_EOF
-setopt NO_FLOW_CONTROL
-setopt NO_BEEP
-
 # カーソル位置は保持したままファイル名一覧を順次その場で表示する
 setopt always_last_prompt
 
@@ -49,5 +45,7 @@ setopt pushd_ignore_dups
 
 # 複数のpromptでログインした時など、履歴を共有する
 setopt share_history
+
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -57,3 +57,11 @@ autoload -Uz vcs_info
 
  # プロンプト右端
  RPROMPT='[%~]'
+
+ zshaddhistory() {
+     local line="${1%%$'\n'}"
+     [[ ! "$line" =~ "^(cd|la|l|ls|rm|rmdir|exit|history-all)($| )" ]]
+ }
+
+ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+ zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache

@@ -16,3 +16,5 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 set paste
+
+:set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
