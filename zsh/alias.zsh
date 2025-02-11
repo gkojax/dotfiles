@@ -27,6 +27,7 @@ alias rm='rm -i'
 alias h='history'
 alias hh='history-all'
 alias op='open .'
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 alias gs='git status'
 alias gl='git log --oneline'

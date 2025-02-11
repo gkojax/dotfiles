@@ -65,9 +65,3 @@ zshaddhistory() {
 
 compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
-
-export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
-export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
-export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
-export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
-export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"

@@ -1,9 +1,13 @@
-ln -s ~/dotfiles/zshenv ~/.zshenv;
+echo "export ZDOTDIR=$HOME/.config/zsh" | sudo tee -a /etc/zshenv
+sudo chmod 444 /etc/zshenv
+
+ln -s ~/dotfiles/zshenv ~/.config/zsh/.zshenv;
 ln -s ~/dotfiles/zshrc ~/.config/zsh/.zshrc;
 ln -s ~/dotfiles/vimrc ~/.vim/vimrc;
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf;
+ln -s ~/dotfiles/tmux.conf ~/.config/tmux/tmux.conf;
 
 ln -s ~/dotfiles/Brewfile ~/.Brewfile;
 brew bundle --global
 
+# create .Brewfile
 # brew bundle dump --global
