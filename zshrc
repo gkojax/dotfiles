@@ -1,5 +1,5 @@
 # sheldon実行
-export SHELDON_CONFIG_DIR=~/dotfiles
+export SHELDON_CONFIG_DIR=~/dotfiles/zsh
 cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}
 sheldon_cache="$cache_dir/sheldon.zsh"
 sheldon_toml="${SHELDON_CONFIG_DIR}/plugins.toml"

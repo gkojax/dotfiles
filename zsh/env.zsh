@@ -19,6 +19,15 @@ ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 ZSH_COMMAND_TIME_COLOR="cyan"
 ZSH_COMMAND_TIME_EXCLUDE=(vim mcedit)
 
+export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --select-1 --exit-0"
+
+export FZF_CTRL_R_OPTS="
+--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+--color header:italic"
+
 eval "$(zoxide init zsh)"
 zle -N zi
 bindkey '^z' zi

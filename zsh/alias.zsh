@@ -1,4 +1,3 @@
-# エイリアス
 alias -g L='| less'
 alias -g G='| \grep -n'
 alias ..='cd ..'

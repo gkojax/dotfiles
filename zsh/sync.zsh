@@ -57,12 +57,3 @@ PROMPT='%! %n:%m %(!.#.>) '
 RPROMPT='[%~]'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
-export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --select-1 --exit-0"
-
-export FZF_CTRL_R_OPTS="
---bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
---color header:italic"
