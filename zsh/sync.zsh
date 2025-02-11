@@ -50,10 +50,4 @@ setopt pushd_ignore_dups
 # 複数のpromptでログインした時など、履歴を共有する
 setopt share_history
 
-# プロンプト
-PROMPT='%! %n:%m %(!.#.>) '
-
-# プロンプト右端
-RPROMPT='[%~]'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
