@@ -21,41 +21,26 @@ apply = ["source"]
 # defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
-[plugins.zeno]
-github = "yuki-yano/zeno.zsh"
-
 [plugins.compinit]
 inline = 'autoload -Uz compinit && zsh-defer compinit'
 
 [plugins.zstyle_completion]
 inline = "zstyle ':completion:*:default' menu select=1"
 
-[plugins.fzf-tab]
-github = "Aloxaf/fzf-tab"
+# [plugins.fzf-tab]
+# github = "Aloxaf/fzf-tab"
 
-[plugins.zsh-autosuggestions]
-github = "zsh-users/zsh-autosuggestions"
+# [plugins.zsh-autosuggestions]
+# github = "zsh-users/zsh-autosuggestions"
 
-[plugins.zsh-you-should-use]
-github = "MichaelAquilina/zsh-you-should-use"
-
-[plugins.zsh-completions]
-github = "zsh-users/zsh-completions"
+# [plugins.zsh-completions]
+# github = "zsh-users/zsh-completions"
 
 [plugins.fast-syntax-highlighting]
 github = "zdharma/fast-syntax-highlighting"
 
-[plugins.zsh-command-time]
-github = "popstas/zsh-command-time"
-
-[plugins.zsh-autopair]
-github = "hlissner/zsh-autopair"
-
-[plugins.zoxide]
-github = "ajeetdsouza/zoxide"
-
-# [plugins.zsh-abbr]
-# github = "olets/zsh-abbr"
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
 
 [plugins.dotfiles-sync]
 local = "~/dotfiles/zsh"

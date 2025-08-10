@@ -1,8 +1,10 @@
 # sheldon実行
-export SHELDON_CONFIG_DIR=~/dotfiles/zsh
-cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}
-sheldon_cache="$cache_dir/sheldon.zsh"
+export SHELDON_CONFIG_DIR=~/dotfiles/sheldon
 sheldon_toml="${SHELDON_CONFIG_DIR}/plugins.toml"
+
+cache_dir=$HOME/.cache
+sheldon_cache="$cache_dir/sheldon.zsh"
+
 if [[ ! -r "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
   mkdir -p $cache_dir
   sheldon source > $sheldon_cache
