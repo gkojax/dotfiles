@@ -50,7 +50,31 @@ setopt share_history
 export HISTFILE="${HOME}/.zsh_history"
 
 # メモリ内の履歴
-HISTSIZE=10000
+export HISTSIZE=10000
 # 保存される履歴
-SAVEHIST=100000
+export SAVEHIST=100000
 function history-all { history -E 1 }
+
+export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --select-1 --exit-0"
+
+export FZF_CTRL_R_OPTS="
+--bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+--color header:italic"
+
+autoload -Uz vcs_info
+ setopt prompt_subst
+ zstyle ':vcs_info:git:*' check-for-changes true
+ zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+ zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+ zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
+ zstyle ':vcs_info:*' actionformats '[%b|%a]'
+ precmd () { vcs_info }
+
+ # プロンプト
+ PROMPT='%! %n:$vcs_info_msg_0_%f%F{yellow}%f %(!.#.>) '
+
+ # プロンプト右端
+ RPROMPT='[%~]'

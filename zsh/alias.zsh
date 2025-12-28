@@ -1,19 +1,19 @@
 case "$OSTYPE" in
     darwin*)
-        (( ${+commands[gdate]} )) && abbr -S date='gdate'
-        (( ${+commands[gls]} )) && abbr -S ls='gls --color=auto'
-        (( ${+commands[gmkdir]} )) && abbr -S mkdir='gmkdir'
-        (( ${+commands[gcp]} )) && abbr -S cp='gcp'
-        (( ${+commands[gmv]} )) && abbr -S mv='gmv'
-        (( ${+commands[grm]} )) && abbr -S rm='grm'
-        (( ${+commands[gdu]} )) && abbr -S du='gdu'
-        (( ${+commands[ghead]} )) && abbr -S head='ghead'
-        (( ${+commands[gtail]} )) && abbr -S tail='gtail'
-        (( ${+commands[gsed]} )) && abbr -S sed='gsed'
-        (( ${+commands[ggrep]} )) && abbr -S grep='ggrep -n'
-        (( ${+commands[gfind]} )) && abbr -S find='gfind'
-        (( ${+commands[gdirname]} )) && abbr -S dirname='gdirname'
-        (( ${+commands[gxargs]} )) && abbr -S xargs='gxargs'
+        (( ${+commands[gdate]} )) && alias date='gdate'
+        (( ${+commands[gls]} )) && alias ls='gls --color=auto'
+        (( ${+commands[gmkdir]} )) && alias mkdir='gmkdir'
+        (( ${+commands[gcp]} )) && alias cp='gcp'
+        (( ${+commands[gmv]} )) && alias mv='gmv'
+        (( ${+commands[grm]} )) && alias rm='grm'
+        (( ${+commands[gdu]} )) && alias du='gdu'
+        (( ${+commands[ghead]} )) && alias head='ghead'
+        (( ${+commands[gtail]} )) && alias tail='gtail'
+        (( ${+commands[gsed]} )) && alias sed='gsed'
+        (( ${+commands[ggrep]} )) && alias grep='ggrep -n'
+        (( ${+commands[gfind]} )) && alias find='gfind'
+        (( ${+commands[gdirname]} )) && alias dirname='gdirname'
+        (( ${+commands[gxargs]} )) && alias xargs='gxargs'
     ;;
 esac
 
@@ -27,7 +27,6 @@ abbr -S rm='rm -i'
 abbr -S h='history'
 abbr -S hh='history-all'
 abbr -S op='open .'
-abbr -S wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 abbr -S gs='git status'
 abbr -S gl='git log --oneline'
@@ -266,3 +265,5 @@ abbr -S gwta='git worktree add'
 abbr -S gwtls='git worktree list'
 abbr -S gwtmv='git worktree move'
 abbr -S gwtrm='git worktree remove'
+
+abbr -S cdp='~/src/tumblr4photo/script/crawl'

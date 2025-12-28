@@ -1,4 +1,3 @@
-# sheldon実行
 export SHELDON_CONFIG_DIR=~/dotfiles/sheldon
 sheldon_toml="${SHELDON_CONFIG_DIR}/plugins.toml"
 
@@ -11,3 +10,7 @@ if [[ ! -r "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
 fi
 source "$sheldon_cache"
 unset cache_dir sheldon_cache sheldon_toml
+
+eval "$(/usr/local/bin/brew shellenv)"
+eval "$(rbenv init -)"
+source <(fzf --zsh)

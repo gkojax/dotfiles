@@ -21,20 +21,22 @@ apply = ["source"]
 # defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 
-[plugins.compinit]
-inline = 'autoload -Uz compinit && zsh-defer compinit'
+[plugins.dotfiles-sync]
+local = "~/dotfiles/zsh"
+use = ["sync.zsh"]
+apply = ["source"]
 
-[plugins.zstyle_completion]
-inline = "zstyle ':completion:*:default' menu select=1"
-
-# [plugins.fzf-tab]
-# github = "Aloxaf/fzf-tab"
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 
-[plugins.zsh-completions]
-github = "zsh-users/zsh-completions"
+[plugins.fzf]
+github = "junegunn/fzf"
+
+# [plugins.fzf-tab]
+# github = "Aloxaf/fzf-tab"
 
 [plugins.fast-syntax-highlighting]
 github = "zdharma/fast-syntax-highlighting"
@@ -42,11 +44,12 @@ github = "zdharma/fast-syntax-highlighting"
 [plugins.zsh-abbr]
 github = "olets/zsh-abbr"
 
-[plugins.dotfiles-sync]
-local = "~/dotfiles/zsh"
-use = ["{sync,private}.zsh"]
-apply = ["source"]
+[plugins.compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
 
-[plugins.dotfiles-defers]
+[plugins.zstyle_completion]
+inline = "zstyle ':completion:*:default' menu select=1"
+
+[plugins.dotfiles-defer]
 local = "~/dotfiles/zsh"
-use = ["{!sync,!private,*}.zsh"]
+use = ["{!sync,*}.zsh"]
